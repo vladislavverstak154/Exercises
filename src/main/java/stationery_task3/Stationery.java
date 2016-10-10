@@ -1,4 +1,4 @@
-package stationery;
+package stationery_task3;
 
 /**
  * Класс Канцотовар
@@ -10,24 +10,32 @@ public class Stationery {
 	
 	private String name="stationery";
 	private int price = 0;
+	
 
+	
+	
+
+	/**
+	 * Данный конструктор создает канцтовар с нулевой стоимостью
+	 * 
+	 */
+	public Stationery() {
+	}
+	
 	/**
 	 * Данный конструктор создает канцтовар с указанной ценой
 	 * 
 	 * @param price
 	 *            данный параметр задает цену указанного канцтовара
 	 */
-	protected Stationery(int price) {
+	
+	public Stationery(String name,int price) {
 		this.price = price;
+		this.name = name;
 	}
 
-	/**
-	 * Данный конструктор создает канцтовар с нулевой стоимостью
-	 * 
-	 */
-	protected Stationery() {
-	};
-
+	
+	
 	protected void setPrice(int price) {
 		this.price = price;
 	}
@@ -35,5 +43,7 @@ public class Stationery {
 	protected int getPrice() {
 		return price;
 	}
+	
+	
 
 }
