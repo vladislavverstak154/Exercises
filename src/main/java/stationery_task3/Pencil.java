@@ -1,7 +1,14 @@
 package stationery_task3;
 
 public class Pencil extends WritingStationery {
+	{this.setName("Pencil");
+	this.setInkType("graphite");}
 	public Pencil(){
-		super("pencil",15,"ink","blue");
+		this.setPrice(0.2);
+		this.setInkColor("graphite");
 	}
+	public Pencil(String color, double price){
+		this.setInkColor(color);
+		this.setPrice(price);			
+		}
 }

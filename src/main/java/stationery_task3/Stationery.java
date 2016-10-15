@@ -1,49 +1,28 @@
 package stationery_task3;
 
 /**
- * Класс Канцотовар
+ * Class Stationery
  * 
  * @author vladislav
  *
  */
-public class Stationery {
+public abstract class Stationery implements ISortByName {
 	
-	private String name="stationery";
-	private int price = 0;
-	
-
+	private String name;
+	private double price;
 	
 	
-
-	/**
-	 * Данный конструктор создает канцтовар с нулевой стоимостью
-	 * 
-	 */
-	public Stationery() {
-	}
-	
-	/**
-	 * Данный конструктор создает канцтовар с указанной ценой
-	 * 
-	 * @param price
-	 *            данный параметр задает цену указанного канцтовара
-	 */
-	
-	public Stationery(String name,int price) {
-		this.price = price;
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	
-	
-	protected void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	protected int getPrice() {
-		return price;
+		
+	public sortByName(){
+		
 	}
 	
-	
-
 }

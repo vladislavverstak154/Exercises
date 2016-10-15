@@ -1,23 +1,19 @@
 package stationery_task3;
 
 public class WritingStationery extends Stationery {
-private String color;
+private String inkColor;
 private String inkType;
-public WritingStationery(String name,int price,String inkType, String color){
-	super(name, price);
-	this.color=color;
-	this.inkType=inkType;
+
+public String getInkColor() {
+	return inkColor;
 }
-protected String getColor() {
-	return color;
+public void setInkColor(String color) {
+	this.inkColor = color;
 }
-protected void setColor(String color) {
-	this.color = color;
-}
-protected String getInkType() {
+public String getInkType() {
 	return inkType;
 }
-protected void setInkType(String inkType) {
+public void setInkType(String inkType) {
 	this.inkType = inkType;
 }
 
