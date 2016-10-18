@@ -21,8 +21,8 @@ public abstract class Stationery implements ISortByName {
 	}
 
 		
-	public sortByName(){
-		
+	public String sortByName(){
+		return this.name;
 	}
 	
 }
