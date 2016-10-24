@@ -7,6 +7,12 @@ public class Test {
 		newComerKit.sortByPrice();
 		System.out.println("NcKit has been sorted by price");
 		newComerKit.printList();
+		newComerKit.sortByName();
+		System.out.println("NcKit has been sorted by Name");
+		newComerKit.printList();
+		newComerKit.sortByPn();
+		System.out.println("NcKit has been sorted by price and name");
+		newComerKit.printList();
 		
 	}
 }

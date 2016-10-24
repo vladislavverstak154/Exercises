@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 //Necomer's Kit
 
-public class NcKit implements SortByName, SortByPrice, SortByNP  {
+public class NcKit {
 	Stationery[] kit = new Stationery[8];
 
 	public NcKit() {
@@ -18,30 +18,17 @@ public class NcKit implements SortByName, SortByPrice, SortByNP  {
 		kit[7] = new PaperStationery();
 	}
 
-	public static Comparator<Stationery> PriceComparator = new Comparator<Stationery>() {
-		 
-        @Override
-        public int compare(Stationery str1, Stationery str2) {
-            return (int) (str1.getPrice() - str1.getPrice());
-        }
-    };
- 
-    // компаратор сортирует список или массив объектов по возрасту
-    public static Comparator<Employee> AgeComparator = new Comparator<Employee>() {
- 
-        @Override
-        public int compare(Employee e1, Employee e2) {
-            return e1.getAge() - e2.getAge();
-        }
-    }; 
-        // компаратор сортирует список или массив объектов по имени
-    public static Comparator<Employee> NameComparator = new Comparator<Employee>() {
- 
-        @Override
-        public int compare(Employee e1, Employee e2) {
-            return e1.getName().compareTo(e2.getName());
-        }
-    };
+	public void sortByPrice(){
+		SortByPrice sort=new SortByPrice();
+		Arrays.sort(this.kit,sort);}
+	
+	public void sortByName(){
+		SortByName sort=new SortByName();
+		Arrays.sort(this.kit,sort);}
+	
+	public void sortByPn(){
+		SortByPn sort=new SortByPn();
+		Arrays.sort(this.kit,sort);}
 	
 	public void printList(){
 		for(Stationery stnr:this.kit){

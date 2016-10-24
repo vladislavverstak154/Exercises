@@ -4,13 +4,13 @@ import java.util.Comparator;
 
 public class SortByPrice implements Comparator<Stationery> {
 
-	public int compare(Stationery o1, Stationery o2) {
+	public int compare(Stationery stnr1, Stationery stnr2) {
 		int i=0;
-		if (o1.getPrice() < o2.getPrice()) {
+		if (stnr1.getPrice() < stnr2.getPrice()) {
 			i = -1;
-		} else if (o1.getPrice() > o2.getPrice()) {
+		} else if (stnr1.getPrice() > stnr2.getPrice()) {
 			i = 0;
-		} else if (o1.getPrice() == o2.getPrice()) {
+		} else if (stnr1.getPrice() == stnr2.getPrice()) {
 			i = 1;
 		}
 		return i;
