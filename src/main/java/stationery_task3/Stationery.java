@@ -6,7 +6,7 @@ package stationery_task3;
  * @author vladislav
  *
  */
-public abstract class Stationery implements ISortByName {
+public abstract class Stationery {
 	
 	private String name;
 	private double price;
