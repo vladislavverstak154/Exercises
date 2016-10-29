@@ -1,45 +1,104 @@
 package students_task5;
 
+import java.util.Arrays;
 import java.util.Comparator;
 
 public class Group {
-	private static Group[] groups;
-	private Student[] students;
-	private Object[] marks;
+	private static Group[] groups=new Group[1];
+	private Student[] students=new Student[1];
+	private Mark[] marks=new Mark[1];
 	private Subject subject;
-
 	private static int groupcount;
 	
-	private static int studentRank(){
-		return 0;
-	};
 	
+	//this method returns a group according to it's subject
 	
-	
-	private int getRank(Student student){
-		int i=0;
-		while(i<groups.length&&!subject.equals(groups[i])){
+	public static Group getGroup(Subject subject){
+		int i = 0;
+		while (i < Group.groups.length && !Group.groups[i].subject.equals(subject)) {
 			i++;
 		}
-		int j=0;
-		if(groups[i].equals(subject)){
-			while(groups[i].getOwner(marks[j]).equals(student)){
-				j++;
-			}
+		if (Group.groups[Group.groups.length - 1].subject.equals(subject)) {
+			return Group.groups[i];
+		} else if (i < Group.groups.length - 1) {
+			return Group.groups[i];
 		}
-	};
+		return null;
+	}
 	
-	public void getStudentInfo(Student student){
-		for()
+	public static void getStudentInfo(Student student) {
+		int i = 0;
+		System.out.println(student.getName());
+		while (i < 3) {
+			int j = 0;
+			while (j < groups[i].students.length) {
+				if (groups[i].students[j].getName().equals(student.getName())) {
+					System.out.println(student.getName());
+					System.out.println(groups[i].subject.toString() + " mark is "
+							+ groups[i].getMark(student).getValue() + "and rank is " + groups[i].getRank(student));
+				}
+			}
+			i++;
+		}
 	}
 
+	/**
+	 * Returns a rank of student which depends on his mark
+	 * 
+	 * @param student
+	 * @return int returns place of student by value of his mark
+	 */
+	public int getRank(Student student) {
+		this.sortMarks();
+		int i = this.getMarkRank(this.getMark(student));
+		return i;
+	}
+
+	// this method sort marks, to get it's value
+	private void sortMarks() {
+		Arrays.sort(this.marks);
+	}
+
+	private int getMarkRank(Mark mark) {
+		int i = 0;
+		while (i < this.marks.length && !this.marks[i].getValue().equals(mark.getValue())) {
+			i++;
+		}
+		return i;
+	}
+	
+	private Mark getMark(Student student) {
+		int i = 0;
+		while (i < this.marks.length && !this.marks[i].getOwner().equals(student.getName())) {
+			i++;
+		}
+		if (this.marks[this.marks.length - 1].getOwner().equals(student.getName())) {
+			return this.marks[i];
+		} else if (i < this.marks.length - 1) {
+			return this.marks[i];
+		}
+		return null;
+	}
+
+	// private constructor to allow create new groups only by invoking method
+	// newGroup
 	private Group(Subject subject, Student... students) {
 		this.subject = subject;
 		this.students = students;
-	}
+}
 
+	/**
+	 * This method creates a new Group and places reference for it in Static
+	 * field groups;
+	 * 
+	 * @param subject
+	 *            specifies the subject of group;
+	 * @param students
+	 *            specifies the array or a student;
+	 */
 	public static void newGroup(Subject subject, Student... students) {
-		if (groupcount < 2) {
+		if (groupcount < 4) {
+			int j=groups.length;
 			groups[groupcount] = new Group(subject, students);
 			groupcount++;
 		} else {
@@ -47,92 +106,95 @@ public class Group {
 		}
 	}
 
-	// Добавление любого количества студентов
+	/**
+	 * This method add's a Student to group
+	 * 
+	 * @param student
+	 *            reference for a particular Student
+	 */
 	public void addStudent(Student... student) {
 		for (int i = 0; student.length < i; i++) {
-			addStudent(student[i]);
+			this.students = this.addOne(this.students, student[i]);
 		}
 	}
 
-	// добавление одного студента
-	private void addStudent(Student student) {
-		boolean write = false;
-
-		for (int i = 0; i < this.students.length & !write; i++) {
-			if (this.students[i] == null) {
-				this.students[i] = student;
-				write = true;
-			} else
-				;
+	// if Integer returns true, pivate method is made for cheking discipline
+	private boolean typeCheker() {
+		if (this.subject.equals(Subject.ENGLISH) || this.subject.equals(Subject.HISTORY)) {
+			return true;
+		} else {
+			return false;
 		}
+	}
 
-		if (!write) {
-			Student[] studentsNew = new Student[this.students.length + 1];
-			System.arraycopy(this.students, 0, studentsNew, 0, this.students.length);
-			this.students = studentsNew;
-			System.out.println(this.students.length);
-			this.students[this.students.length - 1] = student;
+	// this method returns the owner of mark
+	private Student getOwner(Mark mark) {
+		if (this.typeCheker()) {
+			Mark markM = mark;
+			return markM.getOwner();
+		} else {
+			Mark markM = mark;
+			return markM.getOwner();
+		}
+	}
 
+	/**
+	 * This parameter sets a mark for student in subject
+	 * 
+	 * @param student
+	 *            reference for particular student
+	 * @param mark
+	 *            the value for mark in String type
+	 */
+	public void setMark(Student student, String mark) {
+		if (this.typeCheker()) {
+			this.addOne(this.marks, new Mark(student, Integer.parseInt(mark)));
+		} else {
+			this.addOne(this.marks, new Mark(student, Double.parseDouble(mark)));
 		}
 
 	}
 	
-	private Student getOwner(Object mark){
-		if (this.subject.toString().equals("ENGLISH") || this.subject.toString().equals("HISTORY")) {
-			Mark<Integer> markM=(Mark<Integer>)mark;
-			return markM.getOwner();
-		} else {
-			Mark<Double> markM=(Mark<Double>)mark;
-			return markM.getOwner();
-		}
-		
-	}
+	//This method is made to add one object to array of objects
 
-	public void addMark(Object mark) {
+	private <T> T[] addOne(T[] array, T one) {
 		boolean write = false;
-
-		for (int i = 0; i < this.marks.length & !write; i++) {
-			if (this.marks[i] == null) {
-				this.marks[i] = mark;
+		for (int i = 0; i < array.length & !write; i++) {
+			if (array[i] == null) {
+				array[i] = one;
 				write = true;
 			} else
 				;
 		}
-
 		if (!write) {
-			Object[] marksNew = new Object[this.marks.length + 1];
-			System.arraycopy(this.marks, 0, marksNew, 0, this.marks.length);
-			this.marks = marksNew;
-			System.out.println(this.marks.length);
-			this.marks[this.marks.length - 1] = mark;
-
+			Object[] arrayM = (Object[]) array;
+			Object[] arrayNew = new Object[arrayM.length + 1];
+			System.arraycopy(arrayM, 0, arrayNew, 0, array.length);
+			System.arraycopy(array, 0, arrayNew, 0, array.length);
+			array = (T[]) arrayNew;
+			array[array.length - 1] = one;
 		}
-	}
-
-	public void setMark(Student student, String mark) {
-		if (this.subject.toString().equals("ENGLISH") || this.subject.toString().equals("HISTORY")) {
-			this.addMark(new Mark<Integer>(student, Integer.parseInt(mark)));
-		} else {
-			this.addMark(new Mark<Double>(student, Double.parseDouble(mark)));
-		}
+		return array;
 	}
 
 	// Помещена внутри т.к. оценка не может существовать без самой группы
 
-	class Mark<T> implements Comparator<Mark<T>> {
+	class Mark implements Comparable<Mark> {
 		private Student owner;
-		private T value;
+		private Number value;
+		
+		Mark(){super();};
 
-		Mark(Student student, T value) {
+		Mark(Student student, Number value) {
 			this.owner = student;
 			this.value = value;
 		}
 
-		public T getValue() {
+		public Number getValue() {
 			return value;
 		}
 
-		public void setValue(T value) {
+		public void setValue(Number value) {
 			this.value = value;
 		}
 
@@ -140,11 +202,14 @@ public class Group {
 			return owner;
 		}
 
-		public int compare(Mark<T> o1, Mark<T> o2) {
-			this.getValue().
+		public int compareTo(Mark mark) {
+			if (this.value.doubleValue() < mark.value.doubleValue()) {
+				return -1;
+			} else if (this.value.doubleValue() == mark.value.doubleValue()) {
+				return 0;
+			}
+			return 1;
 		}
-		
-		
 
 	}
 }
