@@ -1,63 +1,54 @@
 package students_task5;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Student {
-	private final String name;
-	private static Student[] students=new Student[10];
+	private String name;
+	private static ArrayList<Student> students = new ArrayList<Student>(1);
 
-	private Student(String name) {
+	public Student(String name) {
 		this.name = name;
+		Student.students.add(this);
 	}
 
 	public static Student[] getStudents(int i, int j) {
-		Student[] students=Arrays.copyOfRange(Student.students, i, j+1);
+		int length = 0;
+		if (i == 0) {
+			length = j+1;
+		} else {
+			length = j - i + 1;
+		}
+		Student[] students = new Student[length];
+		int counter=0;
+		while (i <= j) {
+			students[counter] = Student.students.get(i);
+			counter++;
+			i++;
+		}
 		return students;
+	}
+
+	public static Student getStudent(String name) {
+		Student studentGet = null;
+		for (Student student : Student.students) {
+			if (student.getName().equals(name)) {
+				studentGet = student;
+			}
+		}
+		return studentGet;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public static Student getStudent(String name) {
-		int i = 0;
-		while (i < students.length&&!students[i].getName().equals(name)  ) {
-			i++;
-		}
-		if (students[i].getName().equals(name)) {
-			return students[i];
+	public boolean equals(Student student) {
+		
+		if (this.getName().equals(student.getName())) {
+			return true;
 		} else {
-			return null;
+			return false;
 		}
 	}
 
-	public static void newStudent(String... names) {
-		for (int i = 0; i < names.length; i++) {
-			Student student = new Student(names[i]);
-			addStudent(student);
-		}
-	}
-
-	// добавление одного студента
-	private static void addStudent(Student student) {
-		boolean write = false;
-		int j=students.length;
-		for (int i = 0; i < students.length & !write; i++) {
-			if (students[i] == null) {
-				students[i] = student;
-				write = true;
-			} else
-				;
-		}
-
-		if (!write) {
-			Student[] studentsNew = new Student[students.length + 1];
-			System.arraycopy(students, 0, studentsNew, 0, students.length);
-			students = studentsNew;
-			System.out.println(students.length);
-			students[students.length - 1] = student;
-
-		}
-
-	}
 }

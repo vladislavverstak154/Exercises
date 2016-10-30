@@ -1,27 +1,33 @@
 package students_task5;
 
-public class Mark<T extends Number> {
+
+class Mark<T extends Number>{
 	private Student owner;
-	private Subject group;
 	private T value;
-	public Student getOwner() {
-		return owner;
+	
+	Mark(Student student, T value) {
+		this.owner = student;
+		this.value = value;
 	}
-	public void setOwner(Student owner) {
-		this.owner = owner;
-	}
-	public Subject getGroup() {
-		return group;
-	}
-	public void setGroup(Subject group) {
-		this.group = group;
-	}
-	public T getValue() {
+
+	public Number getValue() {
 		return value;
 	}
+
 	public void setValue(T value) {
 		this.value = value;
 	}
-	
+
+	public Student getOwner() {
+		return owner;
+	}
+
+	public int compareTo(Mark<T> mark) {
+		if (this.value.doubleValue() < mark.value.doubleValue()) {
+			return 1;
+		} else{return 0;}
+	}
+
 }
+	
 
