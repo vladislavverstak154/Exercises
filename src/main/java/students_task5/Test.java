@@ -29,7 +29,7 @@ public class Test {
 		groupPhysics.setMarks(Student.getStudents(1, 5), physicsMarks);
 		
 		String[] mathMarks={"9.1","6.5","9.2","1.3","3.3","8.2","3.2"};
-		groupMath.setMarks(Student.getStudents(1, 5), mathMarks);
+		groupMath.setMarks(Student.getStudents(3, 9), mathMarks);
 		
 		Group.getStudentInfo(Student.getStudent("Vlad"));
 		
