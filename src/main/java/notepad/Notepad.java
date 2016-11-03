@@ -2,9 +2,7 @@ package notepad;
 
 /**
  * @author Vladislav 
- * Объекты данного класса представляют собой блокнот
- * 
- * данный массив представляет собой блокнот с пустыми страницами
+ * The objects of this class represents Notepads
  * 
  */
 
@@ -15,19 +13,17 @@ public class Notepad {
 	private Note[] pages = new Note[1];
 
 	/**
-	 * Этот конструктор создает блокнот по-умолчанию с l=1 местами для записей;
+	 * This constructor creates the notepad with one place for note;
 	 */
 	public Notepad() {};
 
 	/**
-	 * Данный метод представляет собой "Добавить запись в блокнот", Данный метод
-	 * ищет свободно место в блокноте для новой записи, в случае если блокнот
-	 * будет переполнен данный метод создаст новый массив Записей на одну
-	 * позицию длинее предыдущего массива и скопирует туда все предыдущие записи
-	 * и добавит новую;
+	 * This method adds a note into a notepad, if the notepad has no emprty places
+	 * for new note, this method creates a new array of pages for one position
+	 * greater then previos and copy all notes there plus a new note. 
 	 * 
 	 * @param note
-	 *            этот параметр указывает имя новой записи
+	 *            the title of new note
 	 */
 	public void newNote(Note note) {
 
@@ -57,11 +53,12 @@ public class Notepad {
 	}
 	
 /**
- * Этот метод позволяет удалять записи из блокнота, для того чтобы удалить запись из 
- * блокнота, необходимо вызвать метод Notepad.seeAllNotes и потом через индекс нужной
- * записи передать Объект записи в качестве параметра в этот метод. Запись будет 
- * удалена, а массив записей автоматиески уменьшиться в размерах.
- * @param note - параметр типа Note.
+ * This method allows to delete notes from notepad, to delete note from notepad 
+ * call method Notepad.seeAllNotes and then use index of proper note use this note 
+ * as a parameter for this method. The note will be deleted and the array of notes
+ * decrease for one note
+ *  
+ * @param note - parameter of type Note.
  *  
  */
 	public void delNote(Note note) {
@@ -86,8 +83,8 @@ public class Notepad {
 	}
 
 	/**
-	 * Этот метод представляет собой "Вывести все записи"
-	 *  выводит все индексы записей в массиве и их заголовки
+	 * This metod output all titles and indexes of notes in notepad
+	 * 
 	 */
 	public void seeAllNotes() {
 		for (int i = 0; i < this.pages.length; i++) {

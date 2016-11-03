@@ -2,20 +2,20 @@ package notepad;
 
 /**
  * @author Vladislav; 
- * Объекты этого класса представляют собой "Запись в блокноте"
+ * Objects of this class represents "Запись в блокноте"
  */
 
 public class Note {
 	/**
 	 * @param note
-	 *  Переменная note хранит в себе имя(заголовок) записи */
+	 *  This variable note stores the title of note */
 	String note;
 	
 	/**
-	 * Данный конструктор будет создавать объект "Запись в блокноте" и передавать 
-	 * значение данной записи в поле note объекта "Запись в блокноте"
+	 * This constructor creates a note in notepad 
+	 * whith title "note"
 	 * @param note 
-	 * тип Sring, представляет собой заголовок "Записи в блокноте"
+	 * String, represents the title of note 
 	 */
 	public Note(String note) {
 		this.note = note;
@@ -30,9 +30,12 @@ public class Note {
 	}
 
 	
-	 // Данный метод будет позволять нам позже "Редактировать запись" в блокноте
+	 /**
+	  * This method allows to correct note in the Notepad
+	  * @param note
+	  */
 	
-	 protected void setNote(String note) {
+	 public void setNote(String note) {
 		this.note = note;
 	}
 	

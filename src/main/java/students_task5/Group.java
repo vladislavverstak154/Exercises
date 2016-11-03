@@ -3,9 +3,9 @@ package students_task5;
 import java.util.ArrayList;
 
 public class Group {
-	private static ArrayList<Group> groups = new ArrayList<>(1);
-	private ArrayList<Student> students = new ArrayList<>(1);
-	private ArrayList<Mark<Number>> marks = new ArrayList<>(1);
+	private static ArrayList<Group> groups = new ArrayList<Group>(1);
+	private ArrayList<Student> students = new ArrayList<Student>(1);
+	private ArrayList<Mark<Number>> marks = new ArrayList<Mark<Number>>(1);
 	private Subject subject;
 
 	// private constructor to allow create new groups only by invoking method
@@ -51,7 +51,7 @@ public class Group {
 	}
 
 	public <T extends Number> void setMark(Student student, T value) {
-		Mark<Number> mark = new Mark<>(student, value);
+		Mark<Number> mark = new Mark<Number>(student, value);
 		this.marks.add(mark);
 	}
 
