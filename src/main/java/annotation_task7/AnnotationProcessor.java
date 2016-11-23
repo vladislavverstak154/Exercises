@@ -1,5 +1,6 @@
 package annotation_task7;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 public class AnnotationProcessor {
@@ -13,6 +14,9 @@ public class AnnotationProcessor {
 	public static void loadClass(String className) throws Exception{
 		Object object=null;
 		Class<?> clazz=Class.forName(className);
+		Annotation[] annotations=clazz.getAnnotations();
+		Service service=(Service)annotations[0];
+		String name=service.name();
 		if(clazz.isAnnotationPresent(Service.class)){
 			Object serviceObject=clazz.newInstance();
 			Method[] methods=clazz.getDeclaredMethods();
